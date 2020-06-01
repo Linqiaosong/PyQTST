@@ -4,10 +4,10 @@ from setuptools import setup
 
 setup(
     name='PyQTST',
-    version='2.0.2',
+    version='2.0.3',
     author='linqiaosong',
     author_email='linqiaosong@outlook.com',
-    url='https://github.com/Linqiaosong/PyTST',
+    url='https://github.com/Linqiaosong/PyQTST',
     description=u'Software package for calculating chemical reaction rate constant by using transition state theory',
     packages=['PyQTST'],
     install_requires=[
@@ -16,7 +16,7 @@ setup(
         ],
     entry_points={
         'console_scripts': [
-            'run_shermo=PyQTST:run_shermo'
+            
         ]
     }
 )
