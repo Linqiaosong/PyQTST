@@ -1,5 +1,8 @@
 README.md
 setup.py
+PyQTST/APIshermo.py
+PyQTST/Moldata.py
+PyQTST/Reaction.py
 PyQTST/__init__.py
 PyQTST.egg-info/PKG-INFO
 PyQTST.egg-info/SOURCES.txt
