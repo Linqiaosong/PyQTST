@@ -1,0 +1,3 @@
+[console_scripts]
+run_shermo = PyQTST:run_shermo
+

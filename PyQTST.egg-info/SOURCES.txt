@@ -1,0 +1,8 @@
+setup.py
+PyQTST/__init__.py
+PyQTST.egg-info/PKG-INFO
+PyQTST.egg-info/SOURCES.txt
+PyQTST.egg-info/dependency_links.txt
+PyQTST.egg-info/entry_points.txt
+PyQTST.egg-info/requires.txt
+PyQTST.egg-info/top_level.txt
