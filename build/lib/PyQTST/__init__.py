@@ -5,8 +5,6 @@ from .Reaction import Reaction
 from .APIshermo import shermo,run_shermo
 
 
-
-
 if __name__ == "__main__":
     R=Moldata(U0K=0.0,GTK=0.0,Q=1120000000.0)
     R2=Moldata(U0K=0.0,GTK=0.0,Q=80500.0)
@@ -15,5 +13,3 @@ if __name__ == "__main__":
     reac=Reaction(Nmol=2,molR=R,molR2=R2,molTS=TS,molP=P,Temp=300.0,iFreq=-1000.0)
     reac.printf()
     reac.showimg()
-
-    
