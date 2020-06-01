@@ -1,1 +1,1 @@
-# PyTST
+# PyQTST
