@@ -1,5 +1,6 @@
 # encoding=utf-8
 
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from .Moldata import *
@@ -134,7 +135,6 @@ class Reaction:
     def printf(self,GMethod=True,QMethod=True):
 
         gr=self.molr.get_gtk()
-
         gts=self.molts.get_gtk()
         gp=self.molp.get_gtk()
         dg=self.get_gbarrier()
@@ -170,7 +170,7 @@ class Reaction:
             dg=0.0
             gk=0.0
             gt=0.0
-        elif QMethod==False and GMethod==True:
+        elif GMethod==True and QMethod==False:
             qr=0.0
             qr2=0.0
             qts=0.0
@@ -186,7 +186,6 @@ class Reaction:
 
 
         print('''
-
 =========================================================
                    Calculation Report
                        PyQTST v2.0
@@ -204,7 +203,7 @@ class Reaction:
 
 PyQTST:
 
-    A Software package for calculating chemical reaction
+    A software package for calculating chemical reaction
     rate constant by using transition state theory.
 
 Github Website: https://github.com/Linqiaosong/PyQTST
@@ -333,7 +332,7 @@ Product:
 
 Pressure Thermodynamic Reference State:
 
-    p*=1.0E+5 Pa
+    p*=1.0E+05 Pa
 
 Gibbs Free Energy Change:
 
@@ -417,7 +416,8 @@ Reaction Rate Constant:
         k(T={t:.2f} K, QMethod)={qk:.3E} (mol/L)-1*s-1
 
 ---------------------------------------------------------
-
+            ''')
+        print('''
 
 d8b   db  .d88b.  d8888b. .88b  d88.  .d8b.  db      
 888o  88 .8P  Y8. 88  `8D 88'YbdP`88 d8' `8b 88      
@@ -436,6 +436,13 @@ Y88888P VP   V8P Y8888D'      YP
 
             ''')
 
+    def print2file(self,output='result.out',GMethod=True,QMethod=True):
+        init = sys.stdout
+        sys.stdout=open(output, mode='w')
+        self.printf(GMethod=GMethod,QMethod=QMethod)
+        sys.stdout.close()
+        sys.stdout=init
+
     def showimg(self,dUimage=True,dGimage=True):
         Xaxis=[1,2,2.5,3.5,4,5]
         
@@ -453,14 +460,14 @@ Y88888P VP   V8P Y8888D'      YP
         GY1=0.0
         UYaxis=[UY1,UY1,UY2,UY2,UY3,UY3]
         GYaxis=[GY1,GY1,GY2,GY2,GY3,GY3]
-        if dUimage==False and dGimage==True:
-            plt.plot(Xaxis,GYaxis)
+        if dUimage==True and dGimage==False:
+            plt.plot(Xaxis,UYaxis)
             plt.title('Electronic Energy + Zero Point Energy')
             plt.ylabel('U(0 K)/(kJ/mol)')
             plt.xticks([])
             plt.show()
-        elif dUimage==True and dGimage==False:
-            plt.plot(Xaxis,UYaxis)
+        elif dUimage==False and dGimage==True:
+            plt.plot(Xaxis,GYaxis)
             plt.title('Gibbs Free Energy')
             plt.ylabel(f'G(T={self.temp:.2f} K)/(kJ/mol)')
             plt.xticks([])
@@ -477,66 +484,8 @@ Y88888P VP   V8P Y8888D'      YP
             plt.ylabel(f'G(T={self.temp:.2f} K)/(kJ/mol)')
             plt.xticks([])
             plt.show()
-
-
-def shermo(output='C2H5_optfreq.out', Temp=300.0, ZPEscale=1.0, Hscale=1.0, Sscale=1.0, shermo_path='Shermo', EE='N/A'):
-    if EE=='N/A':
-        command=shermo_path+' '+output+' -T '+str(Temp)+' -P 1.0 -sclZPE '+str(ZPEscale)+' -sclheat '+str(Hscale)+' -sclS '+str(Sscale)
-    else:
-        command=shermo_path+' '+output+' -E '+str(EE)+' -T '+str(Temp)+' -P 1.0 -sclZPE '+str(ZPEscale)+' -sclheat '+str(Hscale)+' -sclS '+str(Sscale)
-    os.system(command+'> tmp')
-    file=open('tmp','r')
-    data=file.readlines()[-4:]
-    file.close()
-    os.remove('tmp')
-    data[0]=data[0].split()
-    data[3]=data[3].split()
-    result={}
-    result['U0K']=data[0][11]
-    result['GTK']=data[3][9]
-    return result
-    
-def run_shermo(Nmol=1, Routput='C2H5_optfreq.out', TSoutput='C2H5_optfreq.out', Poutput='C2H5_optfreq.out', imgFreq=-0.0, T=300.0, shermo_Path='Shermo', RE='N/A', TSE='N/A', PE='N/A', sclZPE=1.0, sclHeat=1.0, sclS=1.0, R2output='N/A', R2E='N/A', P2output='N/A', P2E='N/A'):
-    if Nmol==1:
-        Rresult=shermo(output=Routput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=RE, shermo_path=shermo_Path)
-        TSresult=shermo(output=TSoutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=TSE, shermo_path=shermo_Path)
-        Presult=shermo(output=Poutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=PE, shermo_path=shermo_Path)
-        R=Moldata(U0K=Rresult['U0K'],GTK=Rresult['GTK'],EUnit='Eh')
-        TS=Moldata(U0K=TSresult['U0K'],GTK=TSresult['GTK'],EUnit='Eh')
-        if P2output=='N/A':
-            P=Moldata(U0K=Presult['U0K'],GTK=Presult['GTK'],EUnit='Eh')
-        else:
-            P2result=shermo(output=Poutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=PE, shermo_path=shermo_Path)
-            P1=Moldata(U0K=Presult['U0K'],GTK=Presult['GTK'],EUnit='Eh')
-            P2=Moldata(U0K=P2result['U0K'],GTK=P2result['GTK'],EUnit='Eh')
-            P=P1+P2            
-        cal=Reaction(Nmol=1,molR=R,molTS=TS,molP=P,Temp=T,iFreq=imgFreq)
-        cal.printf(QMethod=False)
-        cal.showimg()
-    elif Nmol==2 and R2output!='N/A':
-        Rresult=shermo(output=Routput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=RE, shermo_path=shermo_Path)
-        R2result=shermo(output=R2output, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=R2E, shermo_path=shermo_Path)
-        TSresult=shermo(output=TSoutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=TSE, shermo_path=shermo_Path)
-        Presult=shermo(output=Poutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=PE, shermo_path=shermo_Path)
-        R=Moldata(U0K=Rresult['U0K'],GTK=Rresult['GTK'],EUnit='Eh')
-        R2=Moldata(U0K=R2result['U0K'],GTK=R2result['GTK'],EUnit='Eh')
-        TS=Moldata(U0K=TSresult['U0K'],GTK=TSresult['GTK'],EUnit='Eh')
-        if P2output=='N/A':
-            P=Moldata(U0K=Presult['U0K'],GTK=Presult['GTK'],EUnit='Eh')
-        else:
-            P2result=shermo(output=Poutput, Temp=T, ZPEscale=sclZPE, Hscale=sclHeat, Sscale=sclS, EE=PE, shermo_path=shermo_Path)
-            P1=Moldata(U0K=Presult['U0K'],GTK=Presult['GTK'],EUnit='Eh')
-            P2=Moldata(U0K=P2result['U0K'],GTK=P2result['GTK'],EUnit='Eh')
-            P=P1+P2     
-        cal=Reaction(Nmol=2,molR=R,molR2=R2,molTS=TS,molP=P,Temp=T,iFreq=imgFreq)
-        cal.printf(QMethod=False)
-        cal.showimg()
-    elif Nmol==2 and R2output=='N/A':
-        print("Parameter R2output is necessary! ")
-        exit()
-    else:
-        print("The number of molecules in primitive chemical reaction is not suitable! ")
-        exit()
+        result=[Xaxis,UYaxis,GYaxis]
+        return result
 
 
 
@@ -546,6 +495,6 @@ if __name__ == "__main__":
     TS=Moldata(U0K=88.6132504999874,GTK=80.92,Q=8480000000.0)
     P=Moldata(U0K=30.0,GTK=0.0,Q=1.0)
     reac=Reaction(Nmol=2,molR=R,molR2=R2,molTS=TS,molP=P,Temp=300.0,iFreq=-1000.0)
-    reac.printf()
+    reac.print2file(GMethod=False)
     reac.showimg()
 
