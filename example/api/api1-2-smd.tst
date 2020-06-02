@@ -54,7 +54,7 @@ Reactant A:
 
 (1) Electronic Energy and Zero Point Energy:
 
-    U(0 K)=EE+ZPE=-406776.1 kJ/mol
+    U(0 K)=EE+ZPE=-406763.7 kJ/mol
 
 (2) Gibbs Free Energy at T=298.15 K:
 
@@ -62,13 +62,13 @@ Reactant A:
 
 (3) Total Partition Function without Zero Point Energy:
 
-    Q(V=0)=4.67600700E+11
+    Q(V=0)=0.00000000E+00
 
 Transition State:
 
     Electronic Energy and Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-406494.2 kJ/mol
+        U(0 K)=EE+ZPE=-406481.2 kJ/mol
 
     Gibbs Free Energy at T=298.15 K without Imaginary
     Frequency:
@@ -77,21 +77,21 @@ Transition State:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=4.07307200E+11
+        Q(V=0)=0.00000000E+00
 
 Product:
 
     Electronic Energy and Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-412241.3 kJ/mol
+        U(0 K)=EE+ZPE=-412266.8 kJ/mol
 
     Gibbs Free Energy at T=298.15 K:
 
-        G(T=298.15 K)=-412350.9 kJ/mol
+        G(T=298.15 K)=-412393.2 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=1.59875704E+19
+        Q(V=0)=0.00000000E+00
 
 ---------------------------------------------------------
 
@@ -109,11 +109,11 @@ Pressure Thermodynamic Reference State:
 
 Gibbs Free Energy Change:
 
-    drGm*(T=298.15 K)=-5508.2 kJ/mol
+    drGm*(T=298.15 K)=-5550.5 kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(T=298.15 K)=9.226E+00
+    Kp*(T=298.15 K)=9.384E+00
 
 ---------------------------------------------------------
 
@@ -138,7 +138,7 @@ Pressure Thermodynamic Reference State:
 
 Quantum Tunneling Transmission Coefficient:
 
-    Kappa=522087979959465920.00
+    Kappa=568719124529299968.00
 
 Contribution of Quantum Tunneling Effect in Reaction:
 
@@ -146,7 +146,7 @@ Contribution of Quantum Tunneling Effect in Reaction:
 
 Reaction Energy Barrier dU(0 K):
 
-    dU=281.9 kJ/mol
+    dU=282.5 kJ/mol
 
 Reaction Gibbs Free Energy Barrier dG(T=298.15 K):
 
@@ -156,21 +156,21 @@ Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T=298.15 K, GMethod)=1.164E-19 s-1
+        k(T=298.15 K, GMethod)=1.268E-19 s-1
 
     Partition Function Method:
 
-        k(T=298.15 K, QMethod)=1.165E-19 s-1
+        k(T=298.15 K, QMethod)=0.000E+00 s-1
 
 Halflife of Reactant:
 
     Gibbs Free Energy Method:
 
-        t1/2(T=298.15 K, GMethod)=5.953E+18 s
+        t1/2(T=298.15 K, GMethod)=5.465E+18 s
 
     Partition Function Method:
 
-        t1/2(T=298.15 K, QMethod)=5.947E+18 s
+        t1/2(T=298.15 K, QMethod)=0.000E+00 s
 
 ---------------------------------------------------------
             
