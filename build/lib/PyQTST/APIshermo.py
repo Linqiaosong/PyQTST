@@ -248,8 +248,7 @@ def run_shermo(
         
         cal=Reaction(
             Nmol=2,
-            molR=R,
-            molR2=R2,
+            molR=R+R2,
             molTS=TS,
             molP=P,
             Temp=Temp,

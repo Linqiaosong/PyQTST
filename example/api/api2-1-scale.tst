@@ -32,7 +32,7 @@ PyQTST Citation:
 
 API for Shermo:
 
-    An API of PyQTST for Shermo Software.
+    An API of PyQTST for Shermo software.
 
 Shermo Website: http://sobereva.com/soft/shermo/
 
@@ -41,7 +41,7 @@ Shermo Citation:
     T. Lu, Q. Chen, Shermo: A general code for calculating
     molecular thermodynamic properties, ChemRxiv (2020),
     DOI: 10.26434/chemrxiv.12278801
-        
+ 
 
 
 
@@ -50,62 +50,52 @@ Shermo Citation:
              Reaction Molecule Infomations
 ---------------------------------------------------------
 
-Reactant A:
+Reactant:
 
-    Electronic Energy and Zero Point Energy:
+    Electronic Energy + Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-408853.5 kJ/mol
-
-    Gibbs Free Energy at T=373.15 K:
-
-        G(T=373.15 K)=-408943.5 kJ/mol
-
-    Total Partition Function without Zero Point Energy:
-
-        Q(V=0)=3.81165100E+12
-
-Reactant B:
-
-    Electronic Energy and Zero Point Energy:
-
-        U(0 K)=EE+ZPE=-205970.4 kJ/mol
+        U(0 K)=EE+ZPE=-614823.9 kJ/mol
 
     Gibbs Free Energy at T=373.15 K:
 
-        G(T=373.15 K)=-206042.1 kJ/mol
+        G(373.15 K)=-614985.6 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=1.06071500E+10
+        Q(V=0)/NA=4.04307539E+22
 
 Transition State:
 
-    Electronic Energy and Zero Point Energy:
+    Imaginary Frequency:
+
+        freq=-597.29 cm-1
+
+    Electronic Energy + Zero Point Energy:
 
         U(0 K)=EE+ZPE=-614737.2 kJ/mol
 
     Gibbs Free Energy at T=373.15 K without Imaginary
     Frequency:
 
-        G(T=373.15 K)=-614842.5 kJ/mol
+        G(373.15 K)=-614842.5 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=4.90035800E+14
+        Q(V=0)/NA=4.90035800E+14
 
 Product:
 
-    Electronic Energy and Zero Point Energy:
+    Electronic Energy + Zero Point Energy:
 
         U(0 K)=EE+ZPE=-614970.9 kJ/mol
 
     Gibbs Free Energy at T=373.15 K:
 
-        G(T=373.15 K)=-615075.7 kJ/mol
+        G(373.15 K)=-615075.7 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=4.16476600E+14
+        Q(V=0)/NA=4.16476600E+14
 
 ---------------------------------------------------------
 
@@ -121,13 +111,17 @@ Pressure Thermodynamic Reference State:
 
     p*=1.0E+05 Pa
 
+Electronic energy + Single Point Energy Change:
+
+    drUm*(0 K)=-147.0 kJ/mol
+
 Gibbs Free Energy Change:
 
-    drGm*(T=373.15 K)=-90.1 kJ/mol
+    drGm*(373.15 K)=-90.1 kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(T=373.15 K)=1.029E+00
+    Kp*(373.15 K)=1.029E+00
 
 ---------------------------------------------------------
 
@@ -164,17 +158,17 @@ Reaction Energy Barrier dU(0 K):
 
 Reaction Gibbs Free Energy Barrier dG(T=373.15 K):
 
-    dG(T=373.15 K)=143.0 kJ/mol        
+    dG(373.15 K)=143.0 kJ/mol        
 
 Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T=373.15 K, GMethod)=2.881E-06 (mol/L)-1*s-1
+        k(373.15 K, GMethod)=2.881E-06 (mol/L)-1*s-1
 
     Partition Function Method:
 
-        k(T=373.15 K, QMethod)=2.718E-06 (mol/L)-1*s-1
+        k(373.15 K, QMethod)=2.718E-06 (mol/L)-1*s-1
 
 ---------------------------------------------------------
             

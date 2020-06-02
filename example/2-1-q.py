@@ -29,8 +29,7 @@ P=Moldata(
 # Reaction A->TS->P
 reac=Reaction(
     Nmol=2,             # number of reactant
-    molR=R,
-    molR2=R2,
+    molR=R+R2,
     molTS=TS,
     molP=P,
     Temp=300.0,         # reaction temperature K
@@ -41,7 +40,7 @@ reac=Reaction(
 reac.printf(GMethod=False) # use Gibbs free energy method moly
 
 # Print Result to text file (.tst)
-reac.print2file(output='2-1-g.tst',GMethod=False) # use Gibbs free energy method moly
+reac.print2file(output='2-1-q.tst',GMethod=False) # use Gibbs free energy method moly
 
 # Show Reaction Energy image
 reac.showimg(dGimage=False)

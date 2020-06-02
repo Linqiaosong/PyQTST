@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: PyQTST
-Version: 2.0.5
+Version: 2.0.6
 Summary: Software package for calculating chemical reaction rate constant by using transition state theory
 Home-page: https://github.com/Linqiaosong/PyQTST
 Author: linqiaosong

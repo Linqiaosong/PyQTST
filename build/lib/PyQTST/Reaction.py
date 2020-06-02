@@ -20,26 +20,16 @@ class Reaction:
         molR,
         molTS,
         molP,
-        molR2='N/A',
         Temp=300.0,
         TUnit='K',
-        iFreq=-0.0,
+        iFreq=-0.1,
         FUnit='cm-1'
         ):
 
         self.nmol=int(Nmol)
         self.tunit=str.lower(TUnit)
         self.funit=str.lower(FUnit)
-
-        if self.nmol==1:
-            self.molr=molR
-        elif self.nmol==2 and molR2!='N/A':
-            self.molr=molR
-            self.molr2=molR2
-        else:
-            print("The number of molecules in primitive chemical reaction is not suitable! ")
-            exit()
-
+        self.molr=molR
         self.molts=molTS
         self.molp=molP
 
@@ -71,24 +61,15 @@ class Reaction:
         return self.ifreq
 
     def get_ubarrier(self):
-        if self.nmol==1:
-            ubarrier=self.molts.get_u0k()-self.molr.get_u0k()
-        elif self.nmol==2:
-            ubarrier=self.molts.get_u0k()-self.molr.get_u0k()-self.molr2.get_u0k()
+        ubarrier=self.molts.get_u0k()-self.molr.get_u0k()
         return ubarrier
 
     def get_gbarrier(self):
-        if self.nmol==1:
-            gbarrier=self.molts.get_gtk()-self.molr.get_gtk()
-        elif self.nmol==2:
-            gbarrier=self.molts.get_gtk()-self.molr.get_gtk()-self.molr2.get_gtk()
+        gbarrier=self.molts.get_gtk()-self.molr.get_gtk()
         return gbarrier
 
     def get_vfactor(self):
-        if self.nmol==1:
-            diffu=self.molp.get_u0k()-self.molr.get_u0k()
-        elif self.nmol==2:
-            diffu=self.molp.get_u0k()-self.molr.get_u0k()-self.molr2.get_u0k()
+        diffu=self.molp.get_u0k()-self.molr.get_u0k()
         if diffu>=0:
             vfactor=diffu
         else:
@@ -122,14 +103,13 @@ class Reaction:
 
     def get_kinetic_q(self):
         kappa=self.get_kappa()
-        barrier=barrier=self.get_ubarrier()
+        barrier=self.get_ubarrier()
         qr=self.molr.get_q()
         qts=self.molts.get_q()
         if self.nmol==1:
             qk=kappa*kB*self.temp/h*qts/qr*np.exp(-barrier*1000.0/(kB*L*self.temp))
         elif self.nmol==2:
-            qr2=self.molr2.get_q()
-            qk=kappa*kB*self.temp/h*(kB*self.temp/100000.0)*1000000.0*qts/qr/qr2*np.exp(-barrier*1000.0/(kB*L*self.temp))*L*0.001
+            qk=kappa*kB*self.temp/h*(kB*self.temp/100000.0)*1000000.0*qts/qr*np.exp(-barrier*1000.0/(kB*L*self.temp))*L*0.001
         return qk
 
     def get_halflife_g(self):
@@ -173,20 +153,12 @@ class Reaction:
         du=self.get_ubarrier()
         kappa=self.get_kappa()
         eff=self.get_tuneleff()
-
-        if n==1:
-            dgr=self.molp.get_gtk()-self.molr.get_gtk()
-        elif n==2:
-            dgr=self.molp.get_gtk()-self.molr.get_gtk()-self.molr2.get_gtk()
-            gr2=self.molr2.get_gtk()
-            qr2=self.molr2.get_q()
-            ur2=self.molr2.get_u0k()
-        
+        dur=self.molp.get_u0k()-self.molr.get_u0k()
+        dgr=self.molp.get_gtk()-self.molr.get_gtk()
         kp=np.exp(-dgr/(kB*L*t))
 
         if GMethod==False and QMethod==True:
             gr=0.0
-            gr2=0.0
             gts=0.0
             gp=0.0
             dg=0.0
@@ -194,7 +166,6 @@ class Reaction:
             gt=0.0
         elif GMethod==True and QMethod==False:
             qr=0.0
-            qr2=0.0
             qts=0.0
             qp=0.0
             qk=0.0
@@ -207,7 +178,7 @@ class Reaction:
 
 
 
-        print('''
+        print(f'''
 =========================================================
                    Calculation Report
                        PyQTST v2.0
@@ -241,7 +212,7 @@ PyQTST Citation:
 
 API for Shermo:
 
-    An API of PyQTST for Shermo Software.
+    An API of PyQTST for Shermo software.
 
 Shermo Website: http://sobereva.com/soft/shermo/
 
@@ -250,11 +221,8 @@ Shermo Citation:
     T. Lu, Q. Chen, Shermo: A general code for calculating
     molecular thermodynamic properties, ChemRxiv (2020),
     DOI: 10.26434/chemrxiv.12278801
-        ''')
+ 
 
-
-        if n==1:
-            print(f'''
 
 
 ---------------------------------------------------------
@@ -262,85 +230,52 @@ Shermo Citation:
              Reaction Molecule Infomations
 ---------------------------------------------------------
 
-Reactant A:
+Reactant:
 
-(1) Electronic Energy and Zero Point Energy:
-
-    U(0 K)=EE+ZPE={ur:.1f} kJ/mol
-
-(2) Gibbs Free Energy at T={t:.2f} K:
-
-    G(T={t:.2f} K)={gr:.1f} kJ/mol
-
-(3) Total Partition Function without Zero Point Energy:
-
-    Q(V=0)={qr:.8E}''')
-        elif n==2:
-            print(f'''
-
-
----------------------------------------------------------
-                         Part I
-             Reaction Molecule Infomations
----------------------------------------------------------
-
-Reactant A:
-
-    Electronic Energy and Zero Point Energy:
+    Electronic Energy + Zero Point Energy:
 
         U(0 K)=EE+ZPE={ur:.1f} kJ/mol
 
     Gibbs Free Energy at T={t:.2f} K:
 
-        G(T={t:.2f} K)={gr:.1f} kJ/mol
+        G({t:.2f} K)={gr:.1f} kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)={qr:.8E}
+        Q(V=0)/NA={qr:.8E}
 
-Reactant B:
-
-    Electronic Energy and Zero Point Energy:
-
-        U(0 K)=EE+ZPE={ur2:.1f} kJ/mol
-
-    Gibbs Free Energy at T={t:.2f} K:
-
-        G(T={t:.2f} K)={gr2:.1f} kJ/mol
-
-    Total Partition Function without Zero Point Energy:
-
-        Q(V=0)={qr2:.8E}''')
-        
-        print(f'''
 Transition State:
 
-    Electronic Energy and Zero Point Energy:
+    Imaginary Frequency:
+
+        freq={self.ifreq:.2f} cm-1
+
+    Electronic Energy + Zero Point Energy:
 
         U(0 K)=EE+ZPE={uts:.1f} kJ/mol
 
     Gibbs Free Energy at T={t:.2f} K without Imaginary
     Frequency:
 
-        G(T={t:.2f} K)={gts:.1f} kJ/mol
+        G({t:.2f} K)={gts:.1f} kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)={qts:.8E}
+        Q(V=0)/NA={qts:.8E}
 
 Product:
 
-    Electronic Energy and Zero Point Energy:
+    Electronic Energy + Zero Point Energy:
 
         U(0 K)=EE+ZPE={up:.1f} kJ/mol
 
     Gibbs Free Energy at T={t:.2f} K:
 
-        G(T={t:.2f} K)={gp:.1f} kJ/mol
+        G({t:.2f} K)={gp:.1f} kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)={qp:.8E}
+        Q(V=0)/NA={qp:.8E}
 
 ---------------------------------------------------------
 
@@ -356,13 +291,17 @@ Pressure Thermodynamic Reference State:
 
     p*=1.0E+05 Pa
 
+Electronic energy + Single Point Energy Change:
+
+    drUm*(0 K)={dur:.1f} kJ/mol
+
 Gibbs Free Energy Change:
 
-    drGm*(T={t:.2f} K)={dgr:.1f} kJ/mol
+    drGm*({t:.2f} K)={dgr:.1f} kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(T={t:.2f} K)={kp:.3E}
+    Kp*({t:.2f} K)={kp:.3E}
 
 ---------------------------------------------------------
 
@@ -399,7 +338,7 @@ Reaction Energy Barrier dU(0 K):
 
 Reaction Gibbs Free Energy Barrier dG(T={t:.2f} K):
 
-    dG(T={t:.2f} K)={dg:.1f} kJ/mol        ''')
+    dG({t:.2f} K)={dg:.1f} kJ/mol        ''')
 
         if n==1:
             print(f'''
@@ -407,21 +346,21 @@ Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T={t:.2f} K, GMethod)={gk:.3E} s-1
+        k({t:.2f} K, GMethod)={gk:.3E} s-1
 
     Partition Function Method:
 
-        k(T={t:.2f} K, QMethod)={qk:.3E} s-1
+        k({t:.2f} K, QMethod)={qk:.3E} s-1
 
 Halflife of Reactant:
 
     Gibbs Free Energy Method:
 
-        t1/2(T={t:.2f} K, GMethod)={gt:.3E} s
+        t1/2({t:.2f} K, GMethod)={gt:.3E} s
 
     Partition Function Method:
 
-        t1/2(T={t:.2f} K, QMethod)={qt:.3E} s
+        t1/2({t:.2f} K, QMethod)={qt:.3E} s
 
 ---------------------------------------------------------
             ''')
@@ -431,11 +370,11 @@ Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T={t:.2f} K, GMethod)={gk:.3E} (mol/L)-1*s-1
+        k({t:.2f} K, GMethod)={gk:.3E} (mol/L)-1*s-1
 
     Partition Function Method:
 
-        k(T={t:.2f} K, QMethod)={qk:.3E} (mol/L)-1*s-1
+        k({t:.2f} K, QMethod)={qk:.3E} (mol/L)-1*s-1
 
 ---------------------------------------------------------
             ''')
@@ -484,13 +423,8 @@ Y88888P VP   V8P Y8888D'      YP
 
         Xaxis=[1,2,2.5,3.5,4,5]
         
-        if self.nmol==1:
-            UY1=self.molr.get_u0k()
-            GY1=self.molr.get_gtk()
-        elif self.nmol==2:
-            UY1=self.molr.get_u0k()+self.molr2.get_u0k()
-            GY1=self.molr.get_gtk()+self.molr2.get_gtk()
-        
+        UY1=self.molr.get_u0k()
+        GY1=self.molr.get_gtk()
         UY2=self.molts.get_u0k()-UY1
         UY3=self.molp.get_u0k()-UY1
         GY2=self.molts.get_gtk()-GY1
@@ -557,8 +491,7 @@ if __name__ == "__main__":
 
     reac=Reaction(
         Nmol=2,
-        molR=R,
-        molR2=R2,
+        molR=R+R2,
         molTS=TS,
         molP=P,
         Temp=300.0,

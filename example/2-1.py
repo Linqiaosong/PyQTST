@@ -33,8 +33,7 @@ P=Moldata(
 # Reaction A->TS->P
 reac=Reaction(
     Nmol=2,             # number of reactant
-    molR=R,
-    molR2=R2,
+    molR=R+R2,
     molTS=TS,
     molP=P,
     Temp=300.0,         # reaction temperature K

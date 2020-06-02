@@ -54,48 +54,48 @@ Reactant:
 
     Electronic Energy + Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-614815.7 kJ/mol
+        U(0 K)=EE+ZPE=0.0 kJ/mol
 
-    Gibbs Free Energy at T=373.15 K:
+    Gibbs Free Energy at T=300.00 K:
 
-        G(373.15 K)=-614977.2 kJ/mol
+        G(300.00 K)=0.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)/NA=4.04307539E+22
+        Q(V=0)/NA=9.01600000E+13
 
 Transition State:
 
     Imaginary Frequency:
 
-        freq=-597.29 cm-1
+        freq=-1000.00 cm-1
 
     Electronic Energy + Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-614728.8 kJ/mol
+        U(0 K)=EE+ZPE=88.6 kJ/mol
 
-    Gibbs Free Energy at T=373.15 K without Imaginary
+    Gibbs Free Energy at T=300.00 K without Imaginary
     Frequency:
 
-        G(373.15 K)=-614833.7 kJ/mol
+        G(300.00 K)=0.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)/NA=4.90035800E+14
+        Q(V=0)/NA=8.48000000E+09
 
 Product:
 
     Electronic Energy + Zero Point Energy:
 
-        U(0 K)=EE+ZPE=-614962.1 kJ/mol
+        U(0 K)=EE+ZPE=30.0 kJ/mol
 
-    Gibbs Free Energy at T=373.15 K:
+    Gibbs Free Energy at T=300.00 K:
 
-        G(373.15 K)=-615066.5 kJ/mol
+        G(300.00 K)=0.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)/NA=4.16476600E+14
+        Q(V=0)/NA=1.53300000E+03
 
 ---------------------------------------------------------
 
@@ -113,15 +113,15 @@ Pressure Thermodynamic Reference State:
 
 Electronic energy + Single Point Energy Change:
 
-    drUm*(0 K)=-146.4 kJ/mol
+    drUm*(0 K)=30.0 kJ/mol
 
 Gibbs Free Energy Change:
 
-    drGm*(373.15 K)=-89.4 kJ/mol
+    drGm*(300.00 K)=0.0 kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(373.15 K)=1.029E+00
+    Kp*(300.00 K)=1.000E+00
 
 ---------------------------------------------------------
 
@@ -138,7 +138,7 @@ Number of Reactive Molecule(s):
 
 Temperature of Reaction:
 
-    T=373.15 K
+    T=300.00 K
 
 Pressure Thermodynamic Reference State:
 
@@ -146,29 +146,29 @@ Pressure Thermodynamic Reference State:
 
 Quantum Tunneling Transmission Coefficient:
 
-    Kappa=1.26
+    Kappa=3.55
 
 Contribution of Quantum Tunneling Effect in Reaction:
 
-    eta=20.71%
+    eta=71.82%
 
 Reaction Energy Barrier dU(0 K):
 
-    dU=86.9 kJ/mol
+    dU=88.6 kJ/mol
 
-Reaction Gibbs Free Energy Barrier dG(T=373.15 K):
+Reaction Gibbs Free Energy Barrier dG(T=300.00 K):
 
-    dG(373.15 K)=143.4 kJ/mol        
+    dG(300.00 K)=0.0 kJ/mol        
 
 Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(373.15 K, GMethod)=2.543E-06 (mol/L)-1*s-1
+        k(300.00 K, GMethod)=0.000E+00 (mol/L)-1*s-1
 
     Partition Function Method:
 
-        k(373.15 K, QMethod)=2.544E-06 (mol/L)-1*s-1
+        k(300.00 K, QMethod)=1.940E-05 (mol/L)-1*s-1
 
 ---------------------------------------------------------
             

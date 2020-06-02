@@ -33,8 +33,7 @@ if __name__ == "__main__":
 
     reac=Reaction(
         Nmol=2,
-        molR=R,
-        molR2=R2,
+        molR=R+R2,
         molTS=TS,
         molP=P,
         Temp=300.0,
