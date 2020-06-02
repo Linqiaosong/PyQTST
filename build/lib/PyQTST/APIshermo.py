@@ -232,7 +232,7 @@ def run_shermo(
             P1=Moldata(
                 U0K=Presult['U0K'],
                 GTK=Presult['GTK'],
-                Q=P1result['Q'],
+                Q=Presult['Q'],
                 EUnit='Eh'
                 )
 
