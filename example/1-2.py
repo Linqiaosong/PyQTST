@@ -12,20 +12,20 @@ R=Moldata(
 # Transition State
 TS=Moldata(
     U0K=88.6132504999874,
-    GTK=80.92,
+    GTK=83.552,
     Q=8480000000.0
     )
 
 # Product
 P1=Moldata(
     U0K=30.0,
-    GTK=0.0,
+    GTK=10.0,
     Q=1533.0
     )
 
 P2=Moldata(
     U0K=10.0,
-    GTK=0.0,
+    GTK=12.0,
     Q=127865.0
     )
 

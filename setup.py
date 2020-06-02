@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='PyQTST',
-    version='2.0.4',
+    version='2.0.5',
     author='linqiaosong',
     author_email='linqiaosong@outlook.com',
     url='https://github.com/Linqiaosong/PyQTST',

@@ -25,7 +25,7 @@ TS=Moldata(
 # Product
 P=Moldata(
     U0K=30.0,
-    GTK=0.0,
+    GTK=10.0,
     Q=1533.0
     )
 

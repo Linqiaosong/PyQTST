@@ -101,7 +101,7 @@ Product:
 
     Gibbs Free Energy at T=300.00 K:
 
-        G(T=300.00 K)=0.0 kJ/mol
+        G(T=300.00 K)=10.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
@@ -123,11 +123,11 @@ Pressure Thermodynamic Reference State:
 
 Gibbs Free Energy Change:
 
-    drGm*(T=300.00 K)=0.0 kJ/mol
+    drGm*(T=300.00 K)=10.0 kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(T=300.00 K)=1.000E+00
+    Kp*(T=300.00 K)=9.960E-01
 
 ---------------------------------------------------------
 

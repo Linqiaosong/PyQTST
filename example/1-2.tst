@@ -73,7 +73,7 @@ Transition State:
     Gibbs Free Energy at T=300.00 K without Imaginary
     Frequency:
 
-        G(T=300.00 K)=80.9 kJ/mol
+        G(T=300.00 K)=83.6 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
@@ -87,7 +87,7 @@ Product:
 
     Gibbs Free Energy at T=300.00 K:
 
-        G(T=300.00 K)=0.0 kJ/mol
+        G(T=300.00 K)=22.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
@@ -109,11 +109,11 @@ Pressure Thermodynamic Reference State:
 
 Gibbs Free Energy Change:
 
-    drGm*(T=300.00 K)=0.0 kJ/mol
+    drGm*(T=300.00 K)=22.0 kJ/mol
 
 Thermodynamic Equilibrium Constant:
 
-    Kp*(T=300.00 K)=1.000E+00
+    Kp*(T=300.00 K)=9.912E-01
 
 ---------------------------------------------------------
 
@@ -150,13 +150,13 @@ Reaction Energy Barrier dU(0 K):
 
 Reaction Gibbs Free Energy Barrier dG(T=300.00 K):
 
-    dG(T=300.00 K)=80.9 kJ/mol        
+    dG(T=300.00 K)=83.6 kJ/mol        
 
 Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T=300.00 K, GMethod)=1.804E-01 s-1
+        k(T=300.00 K, GMethod)=6.280E-02 s-1
 
     Partition Function Method:
 
@@ -166,7 +166,7 @@ Halflife of Reactant:
 
     Gibbs Free Energy Method:
 
-        t1/2(T=300.00 K, GMethod)=3.842E+00 s
+        t1/2(T=300.00 K, GMethod)=1.104E+01 s
 
     Partition Function Method:
 

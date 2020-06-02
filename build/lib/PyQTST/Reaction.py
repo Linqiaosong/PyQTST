@@ -14,10 +14,23 @@ class Reaction:
     tunit='k'
     funit='cm-1'
 
-    def __init__(self, Nmol, molR, molTS, molP, molR2='N/A', Temp=300.0, TUnit='K', iFreq=-0.0, FUnit='cm-1'):
+    def __init__(
+        self,
+        Nmol,
+        molR,
+        molTS,
+        molP,
+        molR2='N/A',
+        Temp=300.0,
+        TUnit='K',
+        iFreq=-0.0,
+        FUnit='cm-1'
+        ):
+
         self.nmol=int(Nmol)
         self.tunit=str.lower(TUnit)
         self.funit=str.lower(FUnit)
+
         if self.nmol==1:
             self.molr=molR
         elif self.nmol==2 and molR2!='N/A':
@@ -26,8 +39,10 @@ class Reaction:
         else:
             print("The number of molecules in primitive chemical reaction is not suitable! ")
             exit()
+
         self.molts=molTS
         self.molp=molP
+
         if self.tunit=='k':
             self.temp=float(Temp)
         elif self.tunit=='c':
@@ -37,6 +52,7 @@ class Reaction:
         else:
             print("The unit of temperature was not defined!")
             exit()
+
         if self.funit=='cm-1':
             self.ifreq=float(iFreq)
         elif self.funit=='hz':
@@ -132,7 +148,11 @@ class Reaction:
             qt=0
         return qt
 
-    def printf(self,GMethod=True,QMethod=True):
+    def printf(
+        self,
+        GMethod=True,
+        QMethod=True
+        ):
 
         gr=self.molr.get_gtk()
         gts=self.molts.get_gtk()
@@ -153,6 +173,7 @@ class Reaction:
         du=self.get_ubarrier()
         kappa=self.get_kappa()
         eff=self.get_tuneleff()
+
         if n==1:
             dgr=self.molp.get_gtk()-self.molr.get_gtk()
         elif n==2:
@@ -160,6 +181,7 @@ class Reaction:
             gr2=self.molr2.get_gtk()
             qr2=self.molr2.get_q()
             ur2=self.molr2.get_u0k()
+        
         kp=np.exp(-dgr/(kB*L*t))
 
         if GMethod==False and QMethod==True:
@@ -436,14 +458,30 @@ Y88888P VP   V8P Y8888D'      YP
 
             ''')
 
-    def print2file(self,output='result.out',GMethod=True,QMethod=True):
+    def print2file(
+        self,
+        output='result.out',
+        GMethod=True,
+        QMethod=True
+        ):
+
         init = sys.stdout
         sys.stdout=open(output, mode='w')
-        self.printf(GMethod=GMethod,QMethod=QMethod)
+
+        self.printf(
+            GMethod=GMethod,
+            QMethod=QMethod
+            )
+        
         sys.stdout.close()
         sys.stdout=init
 
-    def showimg(self,dUimage=True,dGimage=True):
+    def showimg(
+        self,
+        dUimage=True,
+        dGimage=True
+        ):
+
         Xaxis=[1,2,2.5,3.5,4,5]
         
         if self.nmol==1:
@@ -451,7 +489,8 @@ Y88888P VP   V8P Y8888D'      YP
             GY1=self.molr.get_gtk()
         elif self.nmol==2:
             UY1=self.molr.get_u0k()+self.molr2.get_u0k()
-            GY1=self.molr.get_gtk()+self.molr2.get_u0k()
+            GY1=self.molr.get_gtk()+self.molr2.get_gtk()
+        
         UY2=self.molts.get_u0k()-UY1
         UY3=self.molp.get_u0k()-UY1
         GY2=self.molts.get_gtk()-GY1
@@ -460,6 +499,7 @@ Y88888P VP   V8P Y8888D'      YP
         GY1=0.0
         UYaxis=[UY1,UY1,UY2,UY2,UY3,UY3]
         GYaxis=[GY1,GY1,GY2,GY2,GY3,GY3]
+
         if dUimage==True and dGimage==False:
             plt.plot(Xaxis,UYaxis)
             plt.title('Electronic Energy + Zero Point Energy')
@@ -490,11 +530,42 @@ Y88888P VP   V8P Y8888D'      YP
 
 
 if __name__ == "__main__":
-    R=Moldata(U0K=0.0,GTK=0.0,Q=1120000000.0)
-    R2=Moldata(U0K=0.0,GTK=0.0,Q=80500.0)
-    TS=Moldata(U0K=88.6132504999874,GTK=80.92,Q=8480000000.0)
-    P=Moldata(U0K=30.0,GTK=0.0,Q=1.0)
-    reac=Reaction(Nmol=2,molR=R,molR2=R2,molTS=TS,molP=P,Temp=300.0,iFreq=-1000.0)
+    
+    R=Moldata(
+        U0K=0.0,
+        GTK=0.0,
+        Q=1120000000.0
+        )
+
+    R2=Moldata(
+        U0K=0.0,
+        GTK=0.0,
+        Q=80500.0
+        )
+
+    TS=Moldata(
+        U0K=88.6132504999874,
+        GTK=80.92,
+        Q=8480000000.0
+        )
+
+    P=Moldata(
+        U0K=30.0,
+        GTK=0.0,
+        Q=1.0
+        )
+
+    reac=Reaction(
+        Nmol=2,
+        molR=R,
+        molR2=R2,
+        molTS=TS,
+        molP=P,
+        Temp=300.0,
+        iFreq=-1000.0
+        )
+
     reac.print2file(GMethod=False)
+
     reac.showimg()
 

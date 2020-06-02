@@ -62,7 +62,7 @@ Reactant A:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=1.12000000E+09
 
 Reactant B:
 
@@ -76,28 +76,28 @@ Reactant B:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=8.05000000E+04
 
 Transition State:
 
     Electronic Energy and Zero Point Energy:
 
-        U(0 K)=EE+ZPE=0.0 kJ/mol
+        U(0 K)=EE+ZPE=88.6 kJ/mol
 
     Gibbs Free Energy at T=300.00 K without Imaginary
     Frequency:
 
-        G(T=300.00 K)=112.0 kJ/mol
+        G(T=300.00 K)=0.0 kJ/mol
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=8.48000000E+09
 
 Product:
 
     Electronic Energy and Zero Point Energy:
 
-        U(0 K)=EE+ZPE=0.0 kJ/mol
+        U(0 K)=EE+ZPE=30.0 kJ/mol
 
     Gibbs Free Energy at T=300.00 K:
 
@@ -105,7 +105,7 @@ Product:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=1.53300000E+03
 
 ---------------------------------------------------------
 
@@ -152,29 +152,29 @@ Pressure Thermodynamic Reference State:
 
 Quantum Tunneling Transmission Coefficient:
 
-    Kappa=0.32
+    Kappa=3.55
 
 Contribution of Quantum Tunneling Effect in Reaction:
 
-    eta=-215.48%
+    eta=71.82%
 
 Reaction Energy Barrier dU(0 K):
 
-    dU=0.0 kJ/mol
+    dU=88.6 kJ/mol
 
 Reaction Gibbs Free Energy Barrier dG(T=300.00 K):
 
-    dG(T=300.00 K)=112.0 kJ/mol        
+    dG(T=300.00 K)=0.0 kJ/mol        
 
 Reaction Rate Constant:
 
     Gibbs Free Energy Method:
 
-        k(T=300.00 K, GMethod)=1.561E-06 (mol/L)-1*s-1
+        k(T=300.00 K, GMethod)=0.000E+00 (mol/L)-1*s-1
 
     Partition Function Method:
 
-        k(T=300.00 K, QMethod)=0.000E+00 (mol/L)-1*s-1
+        k(T=300.00 K, QMethod)=1.940E-05 (mol/L)-1*s-1
 
 ---------------------------------------------------------
             

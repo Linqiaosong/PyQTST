@@ -21,10 +21,7 @@ result=run_shermo(
     )
 
 # save output to text file (.tst)
-result.print2file(
-    output='api1-2-scale.tst',  # output filename
-    QMethod=False               # not to use partition function method
-    )
+result.print2file(output='api1-2-scale.tst')
 
 # show reaction energy change
 result.showimg()

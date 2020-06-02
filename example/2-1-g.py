@@ -4,21 +4,25 @@ from PyQTST import Moldata,Reaction
 
 # Reacant
 R=Moldata(
-    GTK=0.0,            # Gibbs free energy at reaction temperature kJ/mol
+    U0K=0.0,            # electronic energy+ZPE (internal energy at T=0K) kJ/mol
+    GTK=0.0             # Gibbs free energy at reaction temperature kJ/mol
     )
 
 R2=Moldata(
-    GTK=0.0,            # Gibbs free energy at reaction temperature kJ/mol
+    U0K=0.0,            # electronic energy+ZPE (internal energy at T=0K) kJ/mol
+    GTK=0.0             # Gibbs free energy at reaction temperature kJ/mol
     )
 
 # Transition State
 TS=Moldata(
-    GTK=112.0,
+    U0K=88.6132504999874,
+    GTK=112.0
     )
 
 # Product
 P=Moldata(
-    GTK=0.0,
+    U0K=30.0,
+    GTK=10.0
     )
 
 
@@ -33,6 +37,7 @@ reac=Reaction(
     iFreq=-1000.0       # imaginary freq of TS cm-1
     )
 
+
 # Print Result
 reac.printf(QMethod=False) # use Gibbs free energy method moly
 
@@ -40,4 +45,4 @@ reac.printf(QMethod=False) # use Gibbs free energy method moly
 reac.print2file(output='2-1-g.tst',QMethod=False) # use Gibbs free energy method moly
 
 # Show Reaction Energy image
-reac.showimg(dUimage=False)
+reac.showimg()

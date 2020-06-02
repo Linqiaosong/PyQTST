@@ -62,7 +62,7 @@ Reactant A:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=3.81165100E+12
 
 Reactant B:
 
@@ -76,7 +76,7 @@ Reactant B:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=1.06071500E+10
 
 Transition State:
 
@@ -91,7 +91,7 @@ Transition State:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=4.90035800E+14
 
 Product:
 
@@ -105,7 +105,7 @@ Product:
 
     Total Partition Function without Zero Point Energy:
 
-        Q(V=0)=0.00000000E+00
+        Q(V=0)=4.16476600E+14
 
 ---------------------------------------------------------
 
@@ -174,7 +174,7 @@ Reaction Rate Constant:
 
     Partition Function Method:
 
-        k(T=373.15 K, QMethod)=0.000E+00 (mol/L)-1*s-1
+        k(T=373.15 K, QMethod)=2.544E-06 (mol/L)-1*s-1
 
 ---------------------------------------------------------
             

@@ -32,9 +32,17 @@ class Moldata:
     q=1.0
     eunit='kj/mol'
 
-    def __init__(self, U0K=0.0, GTK=0.0, Q=1.0, EUnit='kj/mol'):
+    def __init__(
+        self,
+        U0K=0.0,
+        GTK=0.0,
+        Q=1.0,
+        EUnit='kj/mol'
+        ):
+
         self.eunit=str.lower(EUnit)
         self.q=float(Q)
+
         if self.eunit=='kj/mol':
             self.u0k=float(U0K)
             self.gtk=float(GTK)

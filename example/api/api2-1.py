@@ -13,11 +13,9 @@ result=run_shermo(
     Temp=373.15                 # reaction temperature (K)
     )
 
+
 # save output to text file (.tst)
-result.print2file(
-    output='api2-1.tst',        # output filename
-    QMethod=False               # not to use partition function method
-    )
+result.print2file(output='api2-1.tst')
 
 # show reaction energy change
 result.showimg()
