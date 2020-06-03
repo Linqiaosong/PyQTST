@@ -12,7 +12,7 @@
 
 ## Latest Version 2.0.7
 
-PyQTST is a software package for calculating chemical reaction rate constant by using transition state theory, which is written by Python3. It provides transition state theory calculation of mono-molecular and bi-molecular reactions, and also provides Skodje-Truhlar method to calculate one-dimensional quantum tunneling transmission coefficient that will be used in correcting rate constant. An API for Shermo is also provided by PyQTST.
+PyQTST is a software package for calculating chemical reaction rate constant by using transition state theory, which is written by Python3. It provides transition state theory calculation for mono-molecular and bi-molecular reactions, and also provides Skodje-Truhlar method to calculate one-dimensional quantum tunneling transmission coefficient that will be used in correcting rate constant. An API for Shermo is also provided by PyQTST.
 
 **Github Website**: [https://github.com/Linqiaosong/PyQTST](https://github.com/Linqiaosong/PyQTST)
 
