@@ -1,9 +1,8 @@
 # encoding=utf-8
 
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from .Moldata import *
+from Moldata import *
 
 
 class Reaction:
@@ -397,23 +396,6 @@ Y88888P VP   V8P Y8888D'      YP
 
             ''')
 
-    def print2file(
-        self,
-        output='result.out',
-        GMethod=True,
-        QMethod=True
-        ):
-
-        init = sys.stdout
-        sys.stdout=open(output, mode='w')
-
-        self.printf(
-            GMethod=GMethod,
-            QMethod=QMethod
-            )
-        
-        sys.stdout.close()
-        sys.stdout=init
 
     def showimg(
         self,
@@ -498,7 +480,6 @@ if __name__ == "__main__":
         iFreq=-1000.0
         )
 
-    reac.print2file(GMethod=False)
 
     reac.showimg()
 

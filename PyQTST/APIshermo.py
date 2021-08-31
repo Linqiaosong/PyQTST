@@ -1,8 +1,10 @@
 # encoding=utf-8
 
 import os
-from .Moldata import Moldata
-from .Reaction import Reaction
+import numpy as np
+from Moldata import Moldata
+from Reaction import Reaction
+import matplotlib.pyplot as plt
 
 def shermo(
     input,
@@ -267,14 +269,208 @@ def run_shermo(
     return cal
 
 
+def scan_shermo(
+    Nmol,
+    Rinput='',
+    R2input='N/A',
+    TSinput='',
+    Pinput='',
+    P2input='N/A',
+    iFreq=-0.0,
+    Temp=[],
+    RE='N/A',
+    R2E='N/A',
+    TSE='N/A',
+    PE='N/A',
+    P2E='N/A',
+    sclZPE=1.0,
+    sclHeat=1.0,
+    sclS=1.0,
+    shermo_path='Shermo'
+    ):
+
+    result=[]
+    Xaxis=Temp
+    GYaxis=[]
+    QYaxis=[]
+
+    for temp in Temp:
+        calc=run_shermo(
+            Nmol=Nmol,
+            Rinput=Rinput,
+            R2input=R2input,
+            TSinput=TSinput,
+            Pinput=Pinput,
+            P2input=P2input,
+            iFreq=iFreq,
+            Temp=float(temp),
+            RE=RE,
+            R2E=R2E,
+            TSE=TSE,
+            PE=PE,
+            P2E=P2E,
+            sclZPE=sclZPE,
+            sclHeat=sclHeat,
+            sclS=sclS,
+            shermo_path=shermo_path
+            )
+        GYaxis.append(calc.get_kinetic_g())
+        QYaxis.append(calc.get_kinetic_q())
+    
+    xx=np.linspace(min(Temp),max(Temp),200)
+    GFunc=np.poly1d(np.polyfit(Xaxis,GYaxis,3))
+    QFunc=np.poly1d(np.polyfit(Xaxis,QYaxis,3))
+
+    result.append(Temp)
+    result.append(GYaxis)
+    result.append(QYaxis)
+
+    if Nmol==1:
+        print(f'''
+
+---------------------------------------------------------
+                        Part IV
+  Relationship between Reaction Kinetics and Temperature
+---------------------------------------------------------
+
+Gibbs Free Energy Method:
+
+    k(T)/s-1
+    
+    =  ({GFunc.coeffs[0]:.3E})\t * (T/K)^3
+    
+     + ({GFunc.coeffs[1]:.3E})\t * (T/K)^2
+    
+     + ({GFunc.coeffs[2]:.3E})\t * (T/K)
+    
+     + ({GFunc.coeffs[3]:.3E})
+
+
+    RMSD=
+
+
+Partition Function Method:
+
+    k(T)/s-1
+    
+    =  ({QFunc.coeffs[0]:.3E})\t * (T/K)^3
+    
+     + ({QFunc.coeffs[1]:.3E})\t * (T/K)^2
+    
+     + ({QFunc.coeffs[2]:.3E})\t * (T/K)
+    
+     + ({QFunc.coeffs[3]:.3E})
+
+
+    RMSD=
+
+---------------------------------------------------------
+        ''')
+
+    elif Nmol==2:
+        print(f'''
+
+---------------------------------------------------------
+                        Part IV
+  Relationship between Reaction Kinetics and Temperature
+---------------------------------------------------------
+
+Gibbs Free Energy Method:
+
+    k(T)/((mol/L)-1*s-1)
+
+    =  ({GFunc.coeffs[0]:.3E})\t * (T/K)^3
+
+     + ({GFunc.coeffs[1]:.3E})\t * (T/K)^2
+
+     + ({GFunc.coeffs[2]:.3E})\t * (T/K)
+
+     + ({GFunc.coeffs[3]:.3E})
+
+
+    RMSD=
+
+
+Partition Function Method:
+
+    k(T)/((mol/L)-1*s-1)
+
+    =  ({QFunc.coeffs[0]:.3E})\t * (T/K)^3
+
+     + ({QFunc.coeffs[1]:.3E})\t * (T/K)^2
+
+     + ({QFunc.coeffs[2]:.3E})\t * (T/K)
+
+     + ({QFunc.coeffs[3]:.3E})
+
+
+    RMSD=
+
+---------------------------------------------------------
+        ''')
+
+    else:
+        print("The number of molecules in primitive chemical reaction is not suitable! ")
+        exit()
+
+
+    print('''
+
+d8b   db  .d88b.  d8888b. .88b  d88.  .d8b.  db      
+888o  88 .8P  Y8. 88  `8D 88'YbdP`88 d8' `8b 88      
+88V8o 88 88    88 88oobY' 88  88  88 88ooo88 88      
+88 V8o88 88    88 88`8b   88  88  88 88~~~88 88      
+88  V888 `8b  d8' 88 `88. 88  88  88 88   88 88booo. 
+VP   V8P  `Y88P'  88   YD YP  YP  YP YP   YP Y88888P 
+                                                     
+                                                     
+d88888b d8b   db d8888b.      db                     
+88'     888o  88 88  `8D      88                     
+88ooooo 88V8o 88 88   88      YP                     
+88~~~~~ 88 V8o88 88   88                             
+88.     88  V888 88  .8D      db                     
+Y88888P VP   V8P Y8888D'      YP                   
+
+            ''')
+
+    plt.plot(Xaxis,GYaxis,'rx',xx,GFunc(xx),'-')
+    plt.title('Reaction Rate Constant (Gibbs Free Energy Method)')
+    if Nmol==1:
+        plt.ylabel('k/(s-1)')
+    elif Nmol==2:
+        plt.ylabel('k/((mol/L)-1*s-1)')
+    else:
+        print("The number of molecules in primitive chemical reaction is not suitable! ")
+        exit()
+    plt.xlabel('Temperature/K')
+    plt.figure(2)
+    plt.plot(Xaxis,QYaxis,'rx',xx,QFunc(xx),'-')
+    plt.title('Reaction Rate Constant (Partition Function Method)')
+    if Nmol==1:
+        plt.ylabel('k/(s-1)')
+    elif Nmol==2:
+        plt.ylabel('k/((mol/L)-1*s-1)')
+    else:
+        print("The number of molecules in primitive chemical reaction is not suitable! ")
+        exit()
+    plt.xlabel('Temperature/K')
+    plt.show()
+
+
+    return result
+
+
+
+
 if __name__ == "__main__":
-    run_shermo(
-    Nmol=1,                     # number of reactant
-    Rinput='EtOH-R.log',        # reactant freq input for shermo
-    TSinput='EtOH-TS.log',      # TS freq input for shermo
-    Pinput='EtOH-P.log',        # product A freq input for shermo
-    P2input='EtOH-P2.log',      # product B freq input for shermo
-    iFreq=-2000.2842,           # imaginary freq of TS (cm-1)
-    Temp=298.15                 # reaction temperature (K)
-    )
+    result=scan_shermo(
+        Nmol=2,                     
+        Rinput='DA-R.log',   
+        R2input='DA-R2.log',
+        TSinput='DA-TS.log',      
+        Pinput='DA-P.log',          
+        iFreq=-2000.2842,           
+        Temp=list(range(273,373))
+        )
+    print(result)
     
